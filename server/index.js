@@ -1,6 +1,7 @@
 /* eslint consistent-return:0 */
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const logger = require('./logger');
 
 const argv = require('./argv');
@@ -12,10 +13,17 @@ const ngrok =
     ? require('ngrok')
     : false;
 const { resolve } = require('path');
+const mongoose = require('mongoose');
+const db = require('./api/db');
+const apiRoutes = require('./api/router');
 const app = express();
 
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
+// add middleware to parse request body
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// setup our api route handler middleware
+app.use('/api', apiRoutes);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
@@ -28,22 +36,27 @@ const customHost = argv.host || process.env.HOST;
 const host = customHost || null; // Let http.Server use its default IPv6/4 host
 const prettyHost = customHost || 'localhost';
 
-// Start your app.
-app.listen(port, host, async err => {
-  if (err) {
-    return logger.error(err.message);
-  }
+// connect to mongo
+db.connect(prettyHost);
 
-  // Connect to ngrok in dev mode
-  if (ngrok) {
-    let url;
-    try {
-      url = await ngrok.connect(port);
-    } catch (e) {
-      return logger.error(e);
+mongoose.connection.once('open', () => {
+  // Start your app.
+  app.listen(port, host, async err => {
+    if (err) {
+      return logger.error(err.message);
     }
-    logger.appStarted(port, prettyHost, url);
-  } else {
-    logger.appStarted(port, prettyHost);
-  }
+
+    // Connect to ngrok in dev mode
+    if (ngrok) {
+      let url;
+      try {
+        url = await ngrok.connect(port);
+      } catch (e) {
+        return logger.error(e);
+      }
+      logger.appStarted(port, prettyHost, url);
+    } else {
+      logger.appStarted(port, prettyHost);
+    }
+  });
 });
