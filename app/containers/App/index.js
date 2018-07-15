@@ -17,6 +17,7 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import ListProvider from 'containers/ListProvider/Loadable';
+import AddString from 'components/AddString/Loadable';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/list" component={ListProvider} />
+        <Route exact path="/add" component={AddString} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
