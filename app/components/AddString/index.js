@@ -33,7 +33,9 @@ class AddString extends React.PureComponent {
   }
   submitText() {
     const { text } = this.state;
-    axios.post(API_URL, { text, posted: Date.now() });
+    if (text.trim() !== '') {
+      axios.post(API_URL, { text, posted: Date.now() });
+    }
     this.setState({ text: '' });
   }
   render() {
