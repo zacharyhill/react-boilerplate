@@ -55,6 +55,7 @@ class AddString extends React.PureComponent {
         <label htmlFor="text">
           Add:
           <TextInput
+            autoFocus
             id="text"
             onChange={this.handleChange}
             onKeyPress={this.submitIfEnterKey}
