@@ -12,14 +12,15 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import Layout from '../../components/Layout/Loadable';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
   render() {
     return (
-      <h1>
+      <Layout>
         <FormattedMessage {...messages.header} />
-      </h1>
+      </Layout>
     );
   }
 }

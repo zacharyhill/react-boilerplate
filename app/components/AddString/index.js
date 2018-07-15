@@ -6,8 +6,10 @@
 
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 import { API_URL } from '../../config';
+import Layout from '../Layout/Loadable';
 
 /* eslint-disable react/prefer-stateless-function */
 class AddString extends React.PureComponent {
@@ -35,8 +37,9 @@ class AddString extends React.PureComponent {
     this.setState({ text: '' });
   }
   render() {
+    console.log(this.props);
     return (
-      <div>
+      <Layout location={this.props.location}>
         <label htmlFor="text">
           Add:
           <input
@@ -49,11 +52,13 @@ class AddString extends React.PureComponent {
           />
           <button onClick={this.submit}>Submit</button>
         </label>
-      </div>
+      </Layout>
     );
   }
 }
 
-AddString.propTypes = {};
+AddString.propTypes = {
+  location: PropTypes.object,
+};
 
 export default AddString;

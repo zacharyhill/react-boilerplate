@@ -19,6 +19,7 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { FETCH } from './constants';
+import Layout from '../../components/Layout/Loadable';
 import List from '../../components/List/Loadable';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -31,14 +32,14 @@ export class ListProvider extends React.PureComponent {
   render() {
     const { strings } = this.props;
     return (
-      <div>
+      <Layout>
         <Helmet>
           <title>List All</title>
           <meta name="List All Strings" content="List of Strings" />
         </Helmet>
         <FormattedMessage {...messages.header} />
         <List strings={strings} />
-      </div>
+      </Layout>
     );
   }
 }
