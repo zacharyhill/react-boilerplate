@@ -12,11 +12,11 @@ import PropTypes from 'prop-types';
 class List extends React.PureComponent {
   render() {
     return (
-      <div>
+      <ul>
         {this.props.strings.map(str => (
-          <div key={str.get('_id')}>{str.get('text')}</div>
+          <li key={str.get('_id')}>{str.get('text')}</li>
         ))}
-      </div>
+      </ul>
     );
   }
 }
