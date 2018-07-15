@@ -5,9 +5,13 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+const NavigationBar = styled.div`
+  background-color: #add8e6;
+`;
 
 const NavItem = styled.div`
   color: gray;
@@ -19,30 +23,33 @@ const NavItem = styled.div`
 /* eslint-disable react/prefer-stateless-function */
 class Navigation extends React.PureComponent {
   render() {
+    const HomeLink = NavItem.extend`
+      color: ${this.props.location.pathname === '/' ? 'red' : 'black'};
+    `;
+    const ListLink = NavItem.extend`
+      color: ${this.props.location.pathname === '/list' ? 'red' : 'black'};
+    `;
+    const AddStringLink = NavItem.extend`
+      color: ${this.props.location.pathname === '/add' ? 'red' : 'black'};
+    `;
     return (
-      <div>
-        <NavItem>
-          <Link to="/" href="/">
-            Home
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link to="/list" href="/list">
-            View
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link to="/add" href="/add">
-            Add
-          </Link>
-        </NavItem>
-      </div>
+      <NavigationBar>
+        <Link to="/" href="/">
+          <HomeLink>Home</HomeLink>
+        </Link>
+        <Link to="/list" href="/list">
+          <ListLink>View</ListLink>
+        </Link>
+        <Link to="/add" href="/add">
+          <AddStringLink>Add</AddStringLink>
+        </Link>
+      </NavigationBar>
     );
   }
 }
 
 Navigation.propTypes = {
-  // location: PropTypes.object,
+  location: PropTypes.object,
 };
 
 export default Navigation;
