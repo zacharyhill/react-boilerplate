@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 const NavigationBar = styled.div`
   background-color: #add8e6;
+  margin-bottom: 10px;
 `;
 
 const NavItem = styled.div`
