@@ -7,7 +7,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import { API_URL } from '../../config';
 import Layout from '../Layout/Loadable';
 
@@ -37,11 +37,22 @@ class AddString extends React.PureComponent {
     this.setState({ text: '' });
   }
   render() {
+    const TextInput = styled.input`
+      border: 1px solid gray;
+      padding: 3px 5px;
+      margin: 7px 14px;
+    `;
+    const SubmitButton = styled.button`
+      border: 1px solid gray;
+      display: block;
+      margin: 7px 14px;
+      padding: 3px 5px;
+    `;
     return (
       <Layout location={this.props.location}>
         <label htmlFor="text">
           Add:
-          <input
+          <TextInput
             id="text"
             onChange={this.handleChange}
             onKeyPress={this.submitIfEnterKey}
@@ -49,7 +60,7 @@ class AddString extends React.PureComponent {
             type="text"
             value={this.state.text}
           />
-          <button onClick={this.submit}>Submit</button>
+          <SubmitButton onClick={this.submit}>Submit</SubmitButton>
         </label>
       </Layout>
     );
