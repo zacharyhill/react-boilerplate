@@ -7,13 +7,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
+import Navigation from '../Navigation/Loadable';
 
 /* eslint-disable react/prefer-stateless-function */
 class Layout extends React.PureComponent {
   render() {
     return (
       <div>
-        <h3>Navigation Placeholder</h3>
+        <Navigation location={this.props.location} />
         {this.props.children}
       </div>
     );
@@ -21,7 +22,8 @@ class Layout extends React.PureComponent {
 }
 
 Layout.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.node.isRequired,
+  location: PropTypes.object,
 };
 
 export default Layout;
