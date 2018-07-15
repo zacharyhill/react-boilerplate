@@ -37,7 +37,6 @@ class AddString extends React.PureComponent {
     this.setState({ text: '' });
   }
   render() {
-    console.log(this.props);
     return (
       <Layout location={this.props.location}>
         <label htmlFor="text">
