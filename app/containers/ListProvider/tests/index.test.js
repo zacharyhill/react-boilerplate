@@ -1,12 +1,23 @@
-// import React from 'react';
-// import { shallow } from 'enzyme';
+import React from 'react';
+import { shallow } from 'enzyme';
 
-// import { ListProvider } from '../index';
+import { FETCH } from '../constants';
+import { ListProvider, mapDispatchToProps } from '../index';
 
 describe('<ListProvider />', () => {
-  it('Expect to have unit tests specified', () => {
-    // hardcoding this value because unit-testing
-    // was specified as unnecessary in this project
-    expect(true).toEqual(true);
+  it('Should dispatch FETCH action when mounted', () => {
+    let calledFetch = false;
+    const dispatchStub = action => {
+      if (action.type === FETCH) {
+        calledFetch = true;
+      }
+    };
+    shallow(<ListProvider dispatch={dispatchStub} />);
+    expect(calledFetch).toEqual(true);
+  });
+  it('Should map dispatch onto props', () => {
+    const testObj = { msg: 'test' };
+    const result = mapDispatchToProps(testObj);
+    expect(result).toEqual({ dispatch: testObj });
   });
 });

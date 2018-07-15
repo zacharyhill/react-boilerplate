@@ -8,6 +8,7 @@ export default function* watchFetch() {
 }
 
 export function* fetch() {
-  const { data } = yield call(axios.get, 'http://localhost:3000/api/strings');
+  const results = yield call(axios.get, 'http://localhost:3000/api/strings');
+  const { data } = results;
   yield put({ type: SET_STRINGS, payload: data });
 }

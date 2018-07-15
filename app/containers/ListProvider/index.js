@@ -54,7 +54,7 @@ const mapStateToProps = createStructuredSelector({
   strings: makeSelectListProvider(),
 });
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
     dispatch,
   };
