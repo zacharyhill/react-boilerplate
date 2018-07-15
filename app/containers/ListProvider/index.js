@@ -19,7 +19,7 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { FETCH } from './constants';
-import List from '../../components/List';
+import List from '../../components/List/Loadable';
 
 /* eslint-disable react/prefer-stateless-function */
 export class ListProvider extends React.PureComponent {
