@@ -30,9 +30,9 @@ export class ListProvider extends React.PureComponent {
     });
   }
   render() {
-    const { strings } = this.props;
+    const { strings, location } = this.props;
     return (
-      <Layout>
+      <Layout location={location}>
         <Helmet>
           <title>List All</title>
           <meta name="List All Strings" content="List of Strings" />
@@ -47,6 +47,7 @@ export class ListProvider extends React.PureComponent {
 ListProvider.propTypes = {
   dispatch: PropTypes.func.isRequired,
   strings: PropTypes.object,
+  location: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
